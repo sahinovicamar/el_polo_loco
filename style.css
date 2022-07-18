@@ -1,0 +1,11 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Economica', sans-serif;
+    font-size: xx-large;
+}
+
+canvas {
+    background-color: black;
+}
