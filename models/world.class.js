@@ -7,6 +7,10 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
+    coins = new Coins();
+    statusBarCoins = new StatusBarCoins();
+    throwableObjects = new ThrowableObject();
+    coins = level1.coins;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -15,6 +19,8 @@ class World {
         this.draw();
         this.setWorld();
         this.checkCollisions();
+        this.checkCoins();
+        // this.checkCollisionsCoins();
     }
 
     setWorld() {
@@ -25,13 +31,40 @@ class World {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
                 if(this.character.isColliding(enemy)) {
-                    // console.log('Collision with Character', enemy);
+                    console.log('Collision with Character', enemy);
                     this.character.hit();
                     this.statusBar.setPercentage(this.character.energy)
-                    // console.log('Collision with Character, energy', this.character.energy)
+                    console.log('Collision with Character, energy', this.character.energy)
                 }
             })
         }, 200);
+    }
+
+    // checkCollisionsCoins() {
+    //     this.level.coins.forEach((coin) => {
+    //       if (this.character.isColliding(coin)) {
+    //         const removeCoin = this.coins.indexOf(coin);
+    //         this.coins.splice(removeCoin, 1);
+    //         this.character.coinsAmount++;
+    //         this.coinAmountBar.setPercentageCoinBarAmount(
+    //           this.character.coinsAmount
+    //         );
+    //       }
+    //     });
+    //   }
+    
+
+    checkCoins() {
+        setInterval(() => {
+            this.level.coins.forEach((coin) => {
+                if(this.character.isColliding(coin)) {
+                    console.log('Collision with Coin', coin);
+                    // this.character.hit();
+                    // this.statusBar.setPercentage(this.character.energy)
+                    // console.log('Collision with Character, energy', this.character.energy)
+                }
+            })
+        }, 1000);
     }
 
     draw() {
@@ -39,14 +72,20 @@ class World {
 
         this.ctx.translate(this.camera_x, 0); // wenn nur (this.camera_x) dann wird nicht geladen, man  mus die y Achse auch nennen
 
+
         this.addObjectsToMap(this.level.backgroundObjects);
         this.ctx.translate(-this.camera_x, 0); //Back
 
         this.addToMap(this.statusBar);
         this.ctx.translate(this.camera_x, 0);
 
+
+        // this.addToMap(this.statusBarCoins);
+        // this.ctx.translate(this.camera_x, 0);
+
         this.addToMap(this.character); //Forwards
         this.addObjectsToMap(this.level.enemies);
+        // this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.clouds);
 
         this.ctx.translate(-this.camera_x, 0);
