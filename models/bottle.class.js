@@ -1,8 +1,6 @@
-class Coins extends MovableObject {
-    IMAGES_COIN = [
-        'img/8_coin/coin_1.png',
-        'img/8_coin/coin_2.png'
-
+class Bottles extends MovableObject {
+    IMAGES_BOTTLE = [
+        "img/6_salsa_bottle/2_salsa_bottle_on_ground.png"
     ];
 
     offset = {
@@ -13,21 +11,21 @@ class Coins extends MovableObject {
     }
 
     constructor() {
-        super().loadImage(this.IMAGES_COIN[0]);
-        this.loadImages(this.IMAGES_COIN);
+        super().loadImage(this.IMAGES_BOTTLE[0]);
+        this.loadImages(this.IMAGES_BOTTLE);
         this.x = 400 + Math.floor(Math.random() * 10 * 180);
         this.y = 100 + Math.floor(Math.random() * 10 * 25);
         // this.x = 300 + Math.random() * 600;
-        this.y = 300;
-        this.width = 150;
-        this.height = 150;
+        this.y = 335;
+        this.width = 90;
+        this.height = 90;
         this.animate();
     }
 
     animate() {
 
         setInterval(() => {
-            this.playAnimation(this.IMAGES_COIN);
+            this.playAnimation(this.IMAGES_BOTTLE);
         }, 500)
 
     }

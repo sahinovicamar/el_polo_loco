@@ -4,6 +4,9 @@ class Character extends MovableObject {
     width = 145;
     y = 20;
     speed = 10;
+    coinsAmount = 0;
+    bottlesAmount = 0;
+
     IMAGES_WALKING = [
         '../img/2_character_pepe/2_walk/W-21.png',
         '../img/2_character_pepe/2_walk/W-22.png',
@@ -43,6 +46,13 @@ class Character extends MovableObject {
     ];
 
     world;
+
+    offset = {
+        top: 120,
+        bottom: 14,
+        left: 40,
+        right: 40,
+    };
 
     constructor() {
         super().loadImage('../img/2_character_pepe/2_walk/W-21.png');
