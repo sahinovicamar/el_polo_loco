@@ -3,8 +3,9 @@ class MovableObject extends DrawableObject {
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
-    acceleration = 2.2;
+    acceleration = 1.5;
     energy = 100;
+    energyEndBoss = 10;
     lastHit = 0;
     
     applyGravity() {
@@ -13,14 +14,14 @@ class MovableObject extends DrawableObject {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
             }
-        }, 1000 / 25);
+        }, 1000 / 40);
     }
 
     isAboveGround() {
         if (this instanceof ThrowableObject) { // ThrowableObject should always fall
             return true;
         } else {
-            return this.y < 130;
+            return this.y < 125;
         }
 
     }
@@ -39,6 +40,19 @@ class MovableObject extends DrawableObject {
         } else {
             this.lastHit = new Date().getTime();
         }
+    }
+
+    hitEndboss() {
+        this.energyEndBoss -= 2;
+        if (this.energyEndBoss < 0) {
+            this.energyEndBoss = 0
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+    oneTouchHit() {
+        this.energy = 0;
     }
 
     isHurt() {

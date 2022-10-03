@@ -1,13 +1,13 @@
 class ThrowableObject extends MovableObject {
 
-    throwableObjectsIntervals = [];
+    throwableObjects = [];
 
     IMAGES_ROTATING = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
         'img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
         'img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png',
         'img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png'
-        
+
     ];
 
     IMAGES_BREAKING = [
@@ -21,15 +21,14 @@ class ThrowableObject extends MovableObject {
 
     world;
     offset = {
-        top: 10,
-        bottom: 10,
-        left: 10,
-        right: 10
+        top: 5,
+        bottom: 5,
+        left: 5,
+        right: 5
     }
 
 
     constructor(x, y) {
-        // super().loadImage(this.IMAGES_ROTATING[0]);
         super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
         this.loadImages(this.IMAGES_ROTATING);
         this.loadImages(this.IMAGES_BREAKING);
@@ -38,7 +37,8 @@ class ThrowableObject extends MovableObject {
         this.width = 60;
         this.height = 60;
         this.throw();
-        this.rotationAnimation();
+        this.rotationBottle();
+        // this.bottleBreak();
     }
 
     throw() {
@@ -49,18 +49,16 @@ class ThrowableObject extends MovableObject {
         }, 25);
     }
 
-    rotationAnimation() {
-        let id = setInterval(() => {
+    rotationBottle() {
+        setInterval(() => {
             this.playAnimation(this.IMAGES_ROTATING);
         }, 100);
-        this.throwableObjectsIntervals.push(id);
     }
 
-    // bottleBreak() {
-    //     this.playAnimation(this.IMAGES_BREAKING);
-    //     setTimeout(() => {
-    //         this.x = 0;
-    //     }, 100);
-    // }
-
+    bottleBreak() {
+        this.playAnimation(this.IMAGES_BREAKING);
+        setTimeout(() => {
+            this.x = 0;
+        }, 100);
+    }
 }
