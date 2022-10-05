@@ -7,7 +7,9 @@ class MovableObject extends DrawableObject {
     energy = 100;
     energyEndBoss = 10;
     lastHit = 0;
-    
+
+
+
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
@@ -23,8 +25,9 @@ class MovableObject extends DrawableObject {
         } else {
             return this.y < 125;
         }
-
     }
+
+
 
     isColliding(mo) {
         return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
@@ -64,15 +67,6 @@ class MovableObject extends DrawableObject {
     isDead() {
         return this.energy == 0;
     }
-
-
-    /** 
-     * 
-     *  @param {Array} arr - ['img/image1.png', 'img/image2.png', ....]
-     * 
-     * */
-
-
 
     playAnimation(images) {
         let i = this.currentImage % images.length; // % bedeutet let i = 0 % 6; => 0, Rest 0 

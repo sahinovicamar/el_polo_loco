@@ -18,7 +18,7 @@ class Character extends MovableObject {
         'img/2_character_pepe/1_idle/idle/I-7.png',
         'img/2_character_pepe/1_idle/idle/I-8.png',
         'img/2_character_pepe/1_idle/idle/I-9.png',
-        'img/2_character_pepe/1_idle/idle/I-10.png',
+        'img/2_character_pepe/1_idle/idle/I-10.png'
     ];
 
     IMAGES_WALKING = [
@@ -57,7 +57,7 @@ class Character extends MovableObject {
         'img/2_character_pepe/5_dead/D-54.png',
         'img/2_character_pepe/5_dead/D-55.png',
         'img/2_character_pepe/5_dead/D-56.png',
-        'img/2_character_pepe/5_dead/D-57.png',
+        'img/2_character_pepe/5_dead/D-57.png'
     ];
 
     world;
@@ -119,6 +119,10 @@ class Character extends MovableObject {
                 }
             }
         }, 50)
+    }
+
+    isLandingOnTop(enemy) {
+        return this.isColliding(enemy) && this.isAboveGround() && this.speedY < 0;
     }
 
     jump() {

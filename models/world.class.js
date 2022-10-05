@@ -21,8 +21,6 @@ class World {
     bottles = level1.bottles;
 
     bottleIsThrown = false;
-    bossHit = false;
-
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -116,12 +114,9 @@ class World {
             this.checkCollisionsChicken();
             this.checkCollisionCoins();
             this.checkCollisionBottles();
-            this.checkCollisionsBottlesToBoss();
             this.checkThrowObjects();
             this.checkCollisionsEndBoss();
-            this.checkCollisionsBottlesToGround();
-            //   this.checkIfBossIsDead();
-            //   this.checkCollisionsBoss();
+            this.checkCollisionsBottlesToBoss();
         }, 50);
     }
 
@@ -158,11 +153,23 @@ class World {
 
     checkCollisionsChicken() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isLandingOnTop(enemy)) {
+                this.chickenDies(enemy);
+            } else if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }
-        })
+        });
+    }
+
+
+    chickenDies(enemy) {
+        // if (soundOn == true) {
+        //     this.playboingOnChickenHeadMP3();
+        // }
+        this.character.speedY = 6.5;
+        const enemyToRemove = this.enemies.indexOf(enemy);
+        this.enemies.splice(enemyToRemove, 1);
     }
 
 
@@ -172,7 +179,7 @@ class World {
                 this.character.oneTouchHit();
                 this.statusBar.setPercentage(this.character.energy);
             }
-        })
+        });
     }
 
 
@@ -187,7 +194,7 @@ class World {
                     this.character.coinsAmount
                 );
             }
-        })
+        });
     }
 
 
@@ -202,65 +209,19 @@ class World {
                     this.character.bottlesAmount
                 );
             }
-        })
-    }
-
-
-    checkCollisionsBottlesToGround() {
-        this.ThrowableObjects.forEach((ThrowableObject) => {
-            if (this.bottleOnGround(ThrowableObject)) {
-                this.ThrowableObjects.bottleBreak();
-            }
         });
     }
-
-
-    bottleOnGround(ThrowableObject) {
-        return (ThrowableObject.y > 310);
-    }
-
 
 
     checkCollisionsBottlesToBoss() {
         this.ThrowableObjects.forEach((bottle) => {
             this.level.endBoss.forEach(endboss => {
                 if (bottle.isColliding(endboss)) {
-                    // endboss.hitEndboss(endboss.energyEndBoss);
-                    // this.damageBoss();
-                    this.endBoss[0].endBossHealth--;
-                    // this.ThrowableObjects[0].bottleBreak();
+                    this.endBoss[0].hit();
                     console.log(endboss.endBossHealth);
                 }
             });
         });
-    }
-
-
-    // checkCollisionsBottlesToBoss() {
-    //     this.ThrowableObjects.forEach((ThrowableObject) => {
-    //       if (this.properBossHit(ThrowableObject)) {
-    //         this.damageBoss();
-    //         if (this.endBoss[0].endBossHealth > 0) {
-    //           this.endBoss[0].bossEnraged();
-    //         }
-    //       }
-    //     });
-    //   }
-
-
-
-
-    damageBoss() {
-        this.bossHit = true;
-        this.endBoss[0].endBossHealth--;
-        this.ThrowableObjects[0].bottleBreak();
-        if (this.endBoss[0].x == 2470) {
-            this.endBoss[0].runLeft();
-        }
-        // setTimeout(() => {
-        //     this.ThrowableObjects.splice(0, 1);
-        //     this.bossHit = false;
-        // }, 500);
     }
 
 

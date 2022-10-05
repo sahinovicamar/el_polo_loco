@@ -1,6 +1,5 @@
 class ThrowableObject extends MovableObject {
 
-    throwableObjects = [];
 
     IMAGES_ROTATING = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
@@ -29,36 +28,45 @@ class ThrowableObject extends MovableObject {
 
 
     constructor(x, y) {
-        super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
+        super().loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
         this.loadImages(this.IMAGES_ROTATING);
         this.loadImages(this.IMAGES_BREAKING);
         this.x = x;
         this.y = y;
         this.width = 60;
         this.height = 60;
+        this.speed = 15;
+        this.speedY = 10;
         this.throw();
-        this.rotationBottle();
-        // this.bottleBreak();
     }
 
     throw() {
-        this.speedY = 10;
         this.applyGravity();
         setInterval(() => {
-            this.x += 15;
+            this.bottleDirection();
         }, 25);
+        this.checkThrowableObject();
     }
 
-    rotationBottle() {
+    bottleDirection() {
+        if (world.character.otherDirection) {
+            this.moveLeft();
+        } else {
+            this.moveRight()
+        }
+    }
+
+    checkThrowableObject() {
         setInterval(() => {
-            this.playAnimation(this.IMAGES_ROTATING);
-        }, 100);
+            if (this.isAboveGround()) {
+                this.playAnimation(this.IMAGES_ROTATING);
+
+                if (this.y > 310) {
+                    this.playAnimation(this.IMAGES_BREAKING);
+                }
+
+            }
+        }, 50)
     }
 
-    bottleBreak() {
-        this.playAnimation(this.IMAGES_BREAKING);
-        setTimeout(() => {
-            this.x = 0;
-        }, 100);
-    }
 }
