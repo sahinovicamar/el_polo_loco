@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Economica:ital,wght@0,400;0,700;1,400;1,700&family=Yellowtail&display=swap" rel="stylesheet">
 
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Economica:ital,wght@0,400;0,700;1,400;1,700&family=Yellowtail&display=swap"
+        rel="stylesheet">
+
+    <!--CSS Link-->
     <link rel="stylesheet" href="style.css">
+
 
     <title>El polo loco</title>
 
+    <!--JavaScript src-->
     <script src="models/drawable-object.class.js"></script>
     <script src="models/movable-object.class.js"></script>
     <script src="models/bottle.class.js"></script>
@@ -21,23 +31,67 @@
     <script src="models/status-bar.class.js"></script>
     <script src="models/statusbar-coins.class.js"></script>
     <script src="models/statusbar-bottle.class.js"></script>
-    
+
     <script src="models/world.class.js"></script>
     <script src="models/background-object.class.js"></script>
     <script src="models/keyboard.class.js"></script>
     <script src="models/level.class.js"></script>
     <script src="models/throwable-object.class.js"></script>
     <script src="models/endboss.class.js"></script>
-    
+
     <script src="levels/level1.js"></script>
     <script src="js/game.js"></script>
 </head>
 
 <body onload="init()">
 
-    <h1>El polo loco</h1>
-    
-    <canvas id="canvas" width="720" height="480"></canvas>
+    <h1>El Polo Loco</h1>
+
+    <div id="myCanvas">
+
+        <div id="loader">
+            <div>
+                <img src="img/3_enemies_chicken/chicken_small/1_walk/1_w.png" alt="">
+                <img src="img/3_enemies_chicken/chicken_small/1_walk/2_w.png" alt="">
+                <img src="img/3_enemies_chicken/chicken_small/1_walk/1_w.png" alt="">
+            </div>
+            <span>LOADING...</span>
+        </div>
+
+        <canvas id="canvas" width="720" height="480"></canvas>
+
+        <div id="startScreen">
+            <img id="introImg" style="display: none;" src="img/9_intro_outro_screens/start/startscreen_2.png" alt="">
+        </div>
+
+        <div id="buttonsScreen">
+            <button id="startBtn" onclick="startGame()"><img src="img/10_icons/play_button.png" alt=""> Start</button>
+
+            <img id="settingsImg" src="img/10_icons/settings.png" alt="">
+            <img id="volumeUp" src="img/10_icons/volume_up.png" alt="">
+            <img id="volumeOff" src="img/10_icons/volume_off.png" alt="">
+
+        </div>
+        <div class="instructions-con">
+            <div>
+                <img src="img/10_icons/arrow_left.png" alt="">
+                <img src="img/10_icons/arrow_up.png" alt="">
+                <img src="img/10_icons/arrow_right.png" alt="">
+            </div>
+            <div class="instructions-bottle">
+                <img src="img/6_salsa_bottle/salsa_bottle.png" alt="">Bottles : B
+            </div>
+
+        </div>
+
+        <div>
+            <img id="gameOverImg" src="img/9_intro_outro_screens/game_over/game over.png" alt="">
+            <img id="youLostImg" src="img/9_intro_outro_screens/game_over/you lost.png" alt="">
+            <button id="restartBtn" onclick="restartGame()">RESTART</button>
+        </div>
+
+    </div>
 
 </body>
+
 </html>

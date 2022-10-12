@@ -3,9 +3,13 @@ class World {
     character = new Character();
     coins = new Coins();
     bottles = new Bottles();
+    chicken = new Chicken();
+    // bigEndBoss = new Endboss();
+
     statusBar = new StatusBar();
     statusBarCoins = new StatusBarCoins();
     statusBarBottle = new StatusBarBottle();
+
     ThrowableObjects = [];
 
     canvas;
@@ -29,6 +33,7 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+
     }
 
     setWorld() {
@@ -42,6 +47,23 @@ class World {
         this.ctx.clearRect(0, 0, canvas.width, canvas.height);
         this.ctx.translate(this.camera_x, 0); // wenn nur (this.camera_x) dann wird nicht geladen, man  mus die y Achse auch nennen
 
+        this.mapObjects();
+
+        this.addToMap(this.character); //Forwards
+        this.ctx.translate(-this.camera_x, 0); //Back
+
+        this.statusBars();
+
+        this.ctx.translate(this.camera_x, 0);
+        this.ctx.translate(-this.camera_x, 0);
+
+        let self = this;
+        requestAnimationFrame(function () {
+            self.draw();
+        })
+    }
+
+    mapObjects() {
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.coins);
@@ -49,24 +71,12 @@ class World {
         this.addObjectsToMap(this.level.endBoss);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.ThrowableObjects);
+    }
 
-        this.addToMap(this.character); //Forwards
-
-        this.ctx.translate(-this.camera_x, 0); //Back
-
+    statusBars() {
         this.addToMap(this.statusBar);
         this.addToMap(this.statusBarCoins);
         this.addToMap(this.statusBarBottle);
-
-        this.ctx.translate(this.camera_x, 0);
-
-        this.ctx.translate(-this.camera_x, 0);
-
-        //draw() wird immer wieder ausgeführt
-        let self = this;
-        requestAnimationFrame(function () {
-            self.draw();
-        })
     }
 
     addObjectsToMap(objects) {
@@ -80,7 +90,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx)
-        mo.drawFrame(this.ctx)
+        // mo.drawFrame(this.ctx)
         mo.drawHitbox(this.ctx)
 
         if (mo.otherDirection) {
@@ -117,12 +127,12 @@ class World {
             this.checkThrowObjects();
             this.checkCollisionsEndBoss();
             this.checkCollisionsBottlesToBoss();
+            this.checkGameEnd();
         }, 50);
     }
 
 
     checkThrowObjects() {
-
         if (
             this.keyboard.B &&
             this.bottleIsThrown == false &&
@@ -153,9 +163,9 @@ class World {
 
     checkCollisionsChicken() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isLandingOnTop(enemy)) {
+            if (this.character.jumpOnChicken(enemy)) {
                 this.chickenDies(enemy);
-            } else if (this.character.isColliding(enemy)) {
+            } else if (this.character.isColliding(enemy) && !this.character.isAboveGround() && !enemy.dead) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }
@@ -164,12 +174,17 @@ class World {
 
 
     chickenDies(enemy) {
-        // if (soundOn == true) {
-        //     this.playboingOnChickenHeadMP3();
-        // }
-        this.character.speedY = 6.5;
-        const enemyToRemove = this.enemies.indexOf(enemy);
-        this.enemies.splice(enemyToRemove, 1);
+        if (this.character.jumpOnChicken) {
+            if (enemy instanceof Chicken) {
+                enemy.chickenIsDead();
+                enemy.stopIntervals();
+                enemy.dead = true;
+                // setTimeout(() => {
+                //     const enemyToRemove = this.level.enemies.indexOf(enemy);
+                //     this.level.enemies.splice(enemyToRemove, 1);
+                // }, 1000)
+            }
+        }
     }
 
 
@@ -218,10 +233,37 @@ class World {
             this.level.endBoss.forEach(endboss => {
                 if (bottle.isColliding(endboss)) {
                     this.endBoss[0].hit();
-                    console.log(endboss.endBossHealth);
+                    console.log(endboss.energy);
                 }
             });
         });
+    }
+
+    checkGameEnd() {
+        if (world.endBoss[0].energy <= 0) {
+            this.gameOver();
+            this.endBoss[0].stopIntervalsEndboss();
+            // clearInterval(this.run)
+            // console.log("Endboss dead")
+            // this.win_sound.play()
+        }
+
+        if (world.character.energy <= 0) {
+            this.youLost();
+            // clearInterval(this.run)
+            // console.log("you lost")
+            // this.lose_sound.play()
+        }
+    }
+
+    gameOver() {
+        document.getElementById('gameOverImg').style.display = "block";
+        document.getElementById('restartBtn').style.display = "block";
+    }
+
+    youLost() {
+        document.getElementById('youLostImg').style.display = "block";
+        document.getElementById('restartBtn').style.display = "block";
     }
 
 

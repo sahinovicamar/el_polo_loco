@@ -81,8 +81,6 @@ class Endboss extends MovableObject {
             }
 
         }, 200);
-
-
     }
 
     endBossRunLeft() {
@@ -90,6 +88,13 @@ class Endboss extends MovableObject {
             this.moveLeft();
         }, 1000 / 60);
 
+    }
+
+    stopIntervalsEndboss() {
+        if(this.energy <= 0){
+            clearInterval(this.animate)
+        }
+        // this.loadImage('img/4_enemie_boss_chicken/5_dead/G26.png')
     }
 
 }

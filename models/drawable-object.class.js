@@ -26,15 +26,15 @@ class DrawableObject {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
-    drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken || this instanceof Coins) {
-            ctx.beginPath();
-            ctx.lineWidth = "1";
-            ctx.strokeStyle = "blue";
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
-    }
+    // drawFrame(ctx) {
+    //     if (this instanceof Character || this instanceof Chicken || this instanceof Coins) {
+    //         ctx.beginPath();
+    //         ctx.lineWidth = "1";
+    //         ctx.strokeStyle = "blue";
+    //         ctx.rect(this.x, this.y, this.width, this.height);
+    //         ctx.stroke();
+    //     }
+    // }
 
     drawHitbox(ctx) {
         if (this instanceof Character || this instanceof Chicken || this instanceof Coins || this instanceof Bottles || this instanceof Endboss) {

@@ -121,8 +121,20 @@ class Character extends MovableObject {
         }, 50)
     }
 
-    isLandingOnTop(enemy) {
-        return this.isColliding(enemy) && this.isAboveGround() && this.speedY < 0;
+
+    jumpOnChicken(enemy) {
+        if (this.isColliding(enemy) && this.isAboveGround()) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    interwals() {
+        if (this.energy = 0) {
+            clearInterval(this.animate)
+        }
     }
 
     jump() {
