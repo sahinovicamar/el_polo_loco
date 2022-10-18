@@ -44,6 +44,7 @@ class MovableObject extends DrawableObject {
             this.lastHit = new Date().getTime();
         }
     }
+    
 
     hitEndboss() {
         this.energyEndBoss -= 2;

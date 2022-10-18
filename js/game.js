@@ -13,6 +13,7 @@ function showPage() {
     document.getElementById("loader").style.display = "none";
     document.getElementById("startBtn").style.display = "flex";
     document.getElementById("introImg").style.display = "block";
+    document.getElementById("helpCon").style.display = "none";
 }
 
 function startGame() {
@@ -30,7 +31,8 @@ function startGameElements() {
     document.getElementById("startBtn").style.display = "none";
     document.getElementById("startScreen").style.display = "none";
     document.getElementById("volumeUp").style.display = "block";
-    // document.getElementById("volumeOff").style.display = "block";
+    document.getElementById("volumeOff").style.display = "none";
+    document.getElementById("helpCon").style.display = "none";
     document.getElementById('gameOverImg').style.display = "none";
     document.getElementById('restartBtn').style.display = "none";
     document.getElementById('youLostImg').style.display = "none";
@@ -88,44 +90,21 @@ window.addEventListener("keyup", (event) => {
 
 })
 
-// function listenForTouches() {
-//     document.getElementById('touch-move-left').addEventListener('touchstart', (e) => {
-//         e.preventDefault()
-//         keyboard.LEFT = true
-//     })
-    
-//     document.getElementById('touch-move-left').addEventListener('touchend', (e) => {
-//         e.preventDefault()
-//         keyboard.LEFT = false
-//     })
+function showHelp() {
+    let toggle = document.getElementById("helpCon");
+    if (toggle.style.display === "none") {
+        toggle.style.display = "block";
+    } else {
+        toggle.style.display = "none";
+    }
+}
 
-//     document.getElementById('throw-bottle').addEventListener('touchstart', (e) => {
-//         e.preventDefault()
-//         keyboard.D = true
-//     })
-    
-//     document.getElementById('throw-bottle').addEventListener('touchend', (e) => {
-//         e.preventDefault()
-//         keyboard.D = false
-//     })
+function turnOn() {
+    document.getElementById("volumeUp").style.display = "none";
+    document.getElementById("volumeOff").style.display = "block";
+}
 
-//     document.getElementById('jump-up').addEventListener('touchstart', (e) => {
-//         e.preventDefault()
-//         keyboard.SPACE = true
-//     })
-    
-//     document.getElementById('jump-up').addEventListener('touchend', (e) => {
-//         e.preventDefault()
-//         keyboard.SPACE = false
-//     })
-
-//     document.getElementById('touch-move-right').addEventListener('touchstart', (e) => {
-//         e.preventDefault()
-//         keyboard.RIGHT = true
-//     })
-    
-//     document.getElementById('touch-move-right').addEventListener('touchend', (e) => {
-//         e.preventDefault()
-//         keyboard.RIGHT = false
-//     })
-// }
+function turnOff() {
+    document.getElementById("volumeUp").style.display = "block";
+    document.getElementById("volumeOff").style.display = "none";
+}

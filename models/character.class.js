@@ -6,6 +6,7 @@ class Character extends MovableObject {
     speed = 10;
     coinsAmount = 0;
     bottlesAmount = 0;
+    intervalsIds = [];
 
 
     IMAGES_IDLE = [
@@ -78,6 +79,7 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.applyGravity();
         this.animate();
+        // this.interwals();
     }
 
     animate() {
@@ -133,7 +135,7 @@ class Character extends MovableObject {
 
     interwals() {
         if (this.energy = 0) {
-            clearInterval(this.animate)
+            clearInterval(this.playAnimation(this.IMAGES_DEAD))
         }
     }
 

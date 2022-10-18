@@ -5,6 +5,7 @@ body {
     align-items: center;
     width: 100vw;
     height: 100vh;
+    margin: 0;
     background-position: 50% 50%;
     font-size: xx-large;
     background-image: url("img/10_icons/background.jpg");
@@ -43,7 +44,7 @@ h1 {
     width: 100%;
 }
 
-#settingsImg {
+#helpImg {
     width: 35px;
     height: 35px;
     display: block;
@@ -51,6 +52,37 @@ h1 {
     top: 5px;
     right: 5px;
     cursor: pointer;
+}
+
+#helpCon {
+    width: 250px;
+    height: 180px;
+    display: none;
+    position: absolute;
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px;
+    top: 35px;
+    right: 35px;
+
+}
+
+.help-text {
+    font-size: 24px;
+}
+
+.more-help {
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.more-help:hover {
+    color: blue;
+}
+
+.help-img-bottle {
+    width: 45px;
+    height: 45px;
 }
 
 #volumeUp {
@@ -69,8 +101,13 @@ h1 {
     display: none;
     position: absolute;
     top: 5px;
-    right: 60px;
+    right: 50px;
     cursor: pointer;
+}
+
+.start-btn-con {
+    display: flex;
+    justify-content: center;
 }
 
 #startBtn {
@@ -79,7 +116,6 @@ h1 {
     display: none;
     position: absolute;
     top: 60px;
-    right: 295px;
     background: #f6bf00;
     justify-content: center;
     align-items: center;
@@ -164,3 +200,10 @@ h1 {
     cursor: pointer;
     bottom: 50px;
 }
+
+@media (max-width: 720px) and (orientation:landscape) {
+    #canvas {
+        width: 100%;
+        /* height: 100%; */
+    }
+  }

@@ -60,13 +60,15 @@ class ThrowableObject extends MovableObject {
         setInterval(() => {
             if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_ROTATING);
-
-                if (this.y > 310) {
-                    this.playAnimation(this.IMAGES_BREAKING);
-                }
-
             }
+            this.breakBottle();
         }, 50)
+    }
+
+    breakBottle() {
+        if (this.y > 310) {
+            this.playAnimation(this.IMAGES_BREAKING);
+        }
     }
 
 }

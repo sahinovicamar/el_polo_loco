@@ -4,11 +4,12 @@ class World {
     coins = new Coins();
     bottles = new Bottles();
     chicken = new Chicken();
-    // bigEndBoss = new Endboss();
 
     statusBar = new StatusBar();
     statusBarCoins = new StatusBarCoins();
     statusBarBottle = new StatusBarBottle();
+
+    ThrowableObjectss = new ThrowableObject();
 
     ThrowableObjects = [];
 
@@ -156,7 +157,6 @@ class World {
         this.ThrowableObjects.push(bottle);
         setTimeout(() => {
             this.bottleIsThrown = false;
-
         }, 850);
     }
 
@@ -233,6 +233,7 @@ class World {
             this.level.endBoss.forEach(endboss => {
                 if (bottle.isColliding(endboss)) {
                     this.endBoss[0].hit();
+                    // bottle breaking
                     console.log(endboss.energy);
                 }
             });
@@ -243,14 +244,12 @@ class World {
         if (world.endBoss[0].energy <= 0) {
             this.gameOver();
             this.endBoss[0].stopIntervalsEndboss();
-            // clearInterval(this.run)
             // console.log("Endboss dead")
             // this.win_sound.play()
         }
 
         if (world.character.energy <= 0) {
             this.youLost();
-            // clearInterval(this.run)
             // console.log("you lost")
             // this.lose_sound.play()
         }
