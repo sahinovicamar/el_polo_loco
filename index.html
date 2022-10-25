@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- <link rel="icon" type="image/x-icon" href="img/">  -->
+
     <!--Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,7 +68,8 @@
 
         <div id="buttonsScreen">
             <div class="start-btn-con">
-                <button id="startBtn" onclick="startGame()"><img src="img/10_icons/play_button.png" alt=""> Start</button>
+                <button id="startBtn" onclick="startGame()"><img src="img/10_icons/play_button.png" alt="">
+                    Start</button>
             </div>
 
 
@@ -75,13 +78,49 @@
                 <p class="help-text">
                     Collect the bottles and defeat the EndBoss
                 </p>
+                <span class="keys-con">
+                    <p class="game-control-head">Game control:</p>
+                    Move character
+                    <span class="keys-control">
+                        <img src="img/10_icons/arrow_left.png" alt="">
+                        <img src="img/10_icons/arrow_up.png" alt="">
+                        <img src="img/10_icons/arrow_right.png" alt="">
+                    </span>
+                    or
+                    <span class="keys-control">
+                        <img src="img/10_icons/a-key.png" alt="">
+                        <img src="img/10_icons/w-key.png" alt="">
+                        <img src="img/10_icons/d-key.png" alt="">
+                    </span>
+                    Throw bottle =
+                    <span class="keys-control">
+                        <img src="img/6_salsa_bottle/salsa_bottle.png" alt="">
+                        <img src="img/10_icons/b-key.png" alt="">
+                    </span>
+                </span>
                 <span onclick="showMore()" class="more-help">more Help..</span>
             </div>
             <img id="volumeUp" onclick="turnOn()" src="img/10_icons/volume_up.png" alt="">
             <img id="volumeOff" onclick="turnOff()" src="img/10_icons/volume_off.png" alt="">
 
         </div>
-        <div class="instructions-con">
+
+        <div id="mobileButtons">
+            <div id="buttonJump">
+                Jump
+            </div>
+            <div id="buttonBottle">
+                Bottle
+            </div>
+            <div id="buttonLeft">
+                <img src="img/10_icons/arrow_left.png" alt="">
+            </div>
+            <div id="buttonRight">
+                <img src="img/10_icons/arrow_right.png" alt="">
+            </div>
+        </div>
+
+        <!-- <div class="instructions-con">
             <div>
                 <img src="img/10_icons/arrow_left.png" alt="">
                 <img src="img/10_icons/arrow_up.png" alt="">
@@ -90,8 +129,7 @@
             <div class="instructions-bottle">
                 <img src="img/6_salsa_bottle/salsa_bottle.png" alt="">Bottles : B
             </div>
-
-        </div>
+        </div> -->
 
         <div>
             <img id="gameOverImg" src="img/9_intro_outro_screens/game_over/game over.png" alt="">
@@ -100,6 +138,7 @@
         </div>
 
     </div>
+    <button id="buttonV"></button>
 
 </body>
 

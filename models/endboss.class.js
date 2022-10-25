@@ -51,10 +51,10 @@ class Endboss extends MovableObject {
     offset = {
         top: 60,
         bottom: 40,
-        left: 30,
-        right: 50
+        left: 50,
+        right: 60
     }
-    speed = 0.05;
+    speed = 0.1;
 
 
     constructor() {
@@ -78,6 +78,7 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.HURT_ENDBOSS)
             } else {
                 this.playAnimation(this.WALKING_ENDBOSS);
+                // this.playAnimation(this.ATTACK_ENDBOSS);
             }
 
         }, 200);

@@ -9,8 +9,6 @@ class World {
     statusBarCoins = new StatusBarCoins();
     statusBarBottle = new StatusBarBottle();
 
-    ThrowableObjectss = new ThrowableObject();
-
     ThrowableObjects = [];
 
     canvas;
@@ -26,6 +24,11 @@ class World {
     bottles = level1.bottles;
 
     bottleIsThrown = false;
+
+    collectCoinSound = new Audio("audio/collect-coin.mp3");
+    collectBottleSound = new Audio("audio/collect-bottle.mp3");
+    throwBottleSound = new Audio("audio/throw.mp3");
+    enemyDeadSound = new Audio("audio/enemy-dead.mp3");
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -47,14 +50,10 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, canvas.width, canvas.height);
         this.ctx.translate(this.camera_x, 0); // wenn nur (this.camera_x) dann wird nicht geladen, man  mus die y Achse auch nennen
-
         this.mapObjects();
-
         this.addToMap(this.character); //Forwards
         this.ctx.translate(-this.camera_x, 0); //Back
-
         this.statusBars();
-
         this.ctx.translate(this.camera_x, 0);
         this.ctx.translate(-this.camera_x, 0);
 
@@ -63,6 +62,7 @@ class World {
             self.draw();
         })
     }
+
 
     mapObjects() {
         this.addObjectsToMap(this.level.backgroundObjects);
@@ -91,9 +91,8 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx)
-        // mo.drawFrame(this.ctx)
-        mo.drawHitbox(this.ctx)
-
+        // mo.drawFrame(this.ctx) // blue Box
+        mo.drawHitbox(this.ctx) // red Box
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
@@ -144,6 +143,7 @@ class World {
                 this.character.bottlesAmount
             );
             this.throwBottle();
+            this.throwBottleSound.play();
         }
     }
 
@@ -174,18 +174,28 @@ class World {
 
 
     chickenDies(enemy) {
+        this.enemyDeadSound.pause();
         if (this.character.jumpOnChicken) {
             if (enemy instanceof Chicken) {
                 enemy.chickenIsDead();
                 enemy.stopIntervals();
                 enemy.dead = true;
-                // setTimeout(() => {
-                //     const enemyToRemove = this.level.enemies.indexOf(enemy);
-                //     this.level.enemies.splice(enemyToRemove, 1);
-                // }, 1000)
+                this.enemyDeadSound.play();
+                // this.chickenRemove();
             }
         }
     }
+
+    // chickenRemove() {
+    //     this.level.enemies.forEach((enemy) => {
+    //         if (enemy.dead) {
+    //             setTimeout(() => {
+    //                 const enemyToRemove = this.level.enemies.indexOf(enemy);
+    //                 this.level.enemies.splice(enemyToRemove, 1);
+    //             })
+    //         }
+    //     })
+    // }
 
 
     checkCollisionsEndBoss() {
@@ -204,6 +214,7 @@ class World {
                 const coinToRemove = this.level.coins.indexOf(coin);
                 this.level.coins.splice(coinToRemove, 1);
                 this.character.coinsAmount++;
+                this.collectCoinSound.play();
                 this.statusBarCoins.setPercentage(this.character.coins);
                 this.statusBarCoins.setPercentageCoinBarAmount(
                     this.character.coinsAmount
@@ -219,6 +230,7 @@ class World {
                 const bottleToRemove = this.level.bottles.indexOf(bottle);
                 this.level.bottles.splice(bottleToRemove, 1);
                 this.character.bottlesAmount++;
+                this.collectBottleSound.play();
                 this.statusBarBottle.setPercentage(this.character.bottles);
                 this.statusBarBottle.setPercentageBottleBarAmount(
                     this.character.bottlesAmount
@@ -234,6 +246,9 @@ class World {
                 if (bottle.isColliding(endboss)) {
                     this.endBoss[0].hit();
                     // bottle breaking
+                    // this.playAnimation(this.IMAGES_BREAKING);
+                    // this.ThrowableObjectss.checkThrowableObject();
+                     // flasche soll brechen mit Colliding EndBoss
                     console.log(endboss.energy);
                 }
             });
@@ -265,7 +280,4 @@ class World {
         document.getElementById('restartBtn').style.display = "block";
     }
 
-
 }
-
-
