@@ -1,5 +1,6 @@
 class Chicken extends MovableObject {
-
+    intervalIds = [];
+    
     height = 80;
     width = 65;
     y = 345;
@@ -22,8 +23,8 @@ class Chicken extends MovableObject {
         super().loadImage('../img/3_enemies_chicken/chicken_normal/1_walk/1_w.png')
         this.loadImages(this.CHICKEN_WALKING);
         this.loadImages(this.CHICKEN_DEAD);
-        this.x = 400 + Math.random() * 500; // Zahl zwischen 200 und 700 random Posi
-        this.speed = 0.15 + Math.random() * 0.35; // hier wird eine unterschiedliche Geschwindikeit von Hühner gesetzt
+        this.x = 500 + Math.random() * 1000; 
+        this.speed = 0.10 + Math.random() * 0.70; 
         this.animate();
     }
 
@@ -32,7 +33,10 @@ class Chicken extends MovableObject {
         setInterval(() => {
             if (this.moveLeft) {
                 this.playAnimation(this.CHICKEN_WALKING);
-            }
+            } 
+            // else {
+            //     this.loadImage(this.CHICKEN_DEAD);
+            // }
         }, 200);
 
     }
@@ -48,12 +52,6 @@ class Chicken extends MovableObject {
         setInterval(() => {
             this.playAnimation(this.CHICKEN_DEAD);
         })
-
     }
 
-    stopIntervals() {
-        if(this.chickenIsDead)
-        clearInterval(this.chickenWalk);
-        clearInterval(this.chickenIsDead);
-    }
 }

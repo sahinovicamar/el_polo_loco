@@ -3,12 +3,20 @@ let world;
 let keyboard = new Keyboard();
 // let gameOver;
 
+let backgroundMusicAudio = new Audio('audio/background-music.mp3');
+let collectCoinSound = new Audio("audio/collect-coin.mp3");
+let collectBottleSound = new Audio("audio/collect-bottle.mp3");
+let throwBottleSound = new Audio("audio/throw.mp3");
+let enemyDeadSound = new Audio("audio/enemy-dead.mp3");
+let walkingSound = new Audio("audio/walking.mp3");
+let jumpSound = new Audio("audio/jump.mp3");
 
+let intervalIds = [];
 
 function init() {
     canvas = document.getElementById('canvas');
     loading = setTimeout(showPage, 1000);
-    listenForTouches();
+    // buttonsForTouches();
 }
 
 function showPage() {
@@ -16,6 +24,7 @@ function showPage() {
     document.getElementById("startBtn").style.display = "flex";
     document.getElementById("introImg").style.display = "block";
     document.getElementById("helpCon").style.display = "none";
+        // document.getElementById('mobileButtons').style.display = "none";
 }
 
 function startGame() {
@@ -24,9 +33,11 @@ function startGame() {
     //     pepeStartMP3.play();
     // }
 
+
     initLevel();
     world = new World(canvas, keyboard);
     startGameElements();
+    playBackgroundMusic();
 
 }
 
@@ -39,9 +50,51 @@ function startGameElements() {
     document.getElementById('gameOverImg').style.display = "none";
     document.getElementById('restartBtn').style.display = "none";
     document.getElementById('youLostImg').style.display = "none";
-
+    document.getElementById('mobileButtons').style.display = "block";
 }
 
+function playBackgroundMusic() {
+    backgroundMusicAudio.volume = 0.1;
+    backgroundMusicAudio.play();
+    backgroundMusicAudio.loop = true;
+}
+
+function setStopableInterval(func, time) {
+    let idIntervall = setInterval(func, time);
+    intervalIds.push(idIntervall);
+}
+
+
+function clearAllIntervals() {
+    for (let i = 1; i < 9999; i++)  window.clearInterval(i);
+}
+
+function fullscreen() {
+    let fullscreen = document.getElementById('myCanvas');
+    enterFullscreen(fullscreen);
+}
+
+function enterFullscreen(element) {
+    if(element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if(element.msRequestFullscreen) {     
+      element.msRequestFullscreen();
+    } else if(element.webkitRequestFullscreen) { 
+      element.webkitRequestFullscreen();
+    }
+  }
+  
+//   enterFullscreen(document.documentElement);               // ganze Seite
+//   enterFullscreen(document.getElementById("videoPlayer"));
+
+  function exitFullscreen() {
+    if(document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if(document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    }
+  }
+  
 
 function restartGame() {
     // endSoundOnRestart();
@@ -59,117 +112,19 @@ function showHelp() {
 }
 
 function turnOn() {
+    backgroundMusicAudio.muted = true;
     document.getElementById("volumeUp").style.display = "none";
     document.getElementById("volumeOff").style.display = "block";
-    // document.querySelectorAll(Audio).forEach(sA => sA.pause())
 }
 
 function turnOff() {
+    backgroundMusicAudio.muted = false;
     document.getElementById("volumeUp").style.display = "block";
     document.getElementById("volumeOff").style.display = "none";
-
-
 }
 
 
-window.addEventListener("keydown", (event) => {
-
-    if (event.keyCode == 39) {
-        keyboard.RIGHT = true;
-    }
-    if (event.keyCode == 37) {
-        keyboard.LEFT = true;
-    }
-    if (event.keyCode == 38) {
-        keyboard.UP = true;
-    }
-    if (event.keyCode == 40) {
-        keyboard.down = true;
-    }
-    if (event.keyCode == 32) {
-        keyboard.SPACE = true;
-    }
-    if (event.keyCode == 66) {
-        keyboard.B = true;
-    }
-    if (event.keyCode == 65) {
-        keyboard.A = true;
-    }
-    if (event.keyCode == 87) {
-        keyboard.W = true;
-    }
-    if (event.keyCode == 68) {
-        keyboard.D = true;
-    }
-})
-
-window.addEventListener("keyup", (event) => {
-    if (event.keyCode == 39) {
-        keyboard.RIGHT = false;
-    }
-    if (event.keyCode == 37) {
-        keyboard.LEFT = false;
-    }
-    if (event.keyCode == 38) {
-        keyboard.UP = false;
-    }
-    if (event.keyCode == 40) {
-        keyboard.down = false;
-    }
-    if (event.keyCode == 32) {
-        keyboard.SPACE = false;
-    }
-    if (event.keyCode == 66) {
-        keyboard.B = false;
-    }
-    if (event.keyCode == 65) {
-        keyboard.A = false;
-    }
-    if (event.keyCode == 87) {
-        keyboard.W = false;
-    }
-    if (event.keyCode == 68) {
-        keyboard.D = false;
-    }
-})
 
 
 
-function listenForTouches() {
-    document.getElementById('buttonLeft').addEventListener('touchstart', (event) => {
-        event.preventDefault()
-        keyboard.LEFT = true
-    })
-    
-    document.getElementById('buttonLeft').addEventListener('touchend', (event) => {
-        event.preventDefault()
-        keyboard.LEFT = false
-    })
-    document.getElementById('buttonBottle').addEventListener('touchstart', (event) => {
-        event.preventDefault()
-        keyboard.B = true
-    })
-    
-    document.getElementById('buttonBottle').addEventListener('touchend', (event) => {
-        event.preventDefault()
-        keyboard.B = false
-    })
-    document.getElementById('buttonJump').addEventListener('touchstart', (event) => {
-        event.preventDefault()
-        keyboard.UP = true
-    })
-    
-    document.getElementById('buttonJump').addEventListener('touchend', (event) => {
-        event.preventDefault()
-        keyboard.UP = false
-    })
-    document.getElementById('buttonRight').addEventListener('touchstart', (event) => {
-        event.preventDefault()
-        keyboard.RIGHT = true
-    })
-    
-    document.getElementById('buttonRight').addEventListener('touchend', (event) => {
-        event.preventDefault()
-        keyboard.RIGHT = false
-    })
-}
+

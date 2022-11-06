@@ -3,11 +3,13 @@ class Endboss extends MovableObject {
     height = 420;
     width = 270;
     y = 40;
-    x = 2550;
+    x = 2750;
 
     endBossHealth = 5;
     endBossDead = false;
     energy = 100;
+
+    intervalIds = [];
 
 
     WALKING_ENDBOSS = [
@@ -48,12 +50,14 @@ class Endboss extends MovableObject {
     ];
 
     world;
+
     offset = {
-        top: 60,
-        bottom: 40,
-        left: 50,
-        right: 60
+        top: 90,
+        bottom: 70,
+        left: 80,
+        right: 90
     }
+
     speed = 0.1;
 
 

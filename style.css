@@ -26,8 +26,7 @@ h1 {
     position: relative;
     display: block;
     width: 720px;
-    height: 480px;
-
+    /* height: 480px; */
 }
 
 #startScreen img {
@@ -52,6 +51,33 @@ h1 {
     top: 5px;
     right: 5px;
     cursor: pointer;
+}
+
+#helpImg img {
+    width: 35px;
+    height: 35px;
+    display: block;
+    position: absolute;
+    cursor: pointer;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 60px;
+    background-color: #676565;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    top: 35px;
+    left: -10px;
+    z-index: 1;
+    font-size: 19px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
 }
 
 #helpCon {
@@ -101,7 +127,7 @@ h1 {
     margin: auto;
 }
 
-.keys-control img{
+.keys-control img {
     width: 20px;
     height: 25px;
 }
@@ -111,8 +137,6 @@ h1 {
     height: 35px;
     display: none;
     position: absolute;
-    top: 5px;
-    right: 50px;
     cursor: pointer;
 }
 
@@ -121,9 +145,33 @@ h1 {
     height: 35px;
     display: none;
     position: absolute;
-    top: 5px;
-    right: 50px;
     cursor: pointer;
+}
+
+.tooltip2 {
+    display: flex;
+    position: absolute;
+    top: 5px;
+    right: 90px;
+}
+
+.tooltip2 .tooltiptext2 {
+    visibility: hidden;
+    width: 60px;
+    background-color: #676565;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    top: 35px;
+    left: -10px;
+    z-index: 1;
+    font-size: 19px;
+}
+
+.tooltip2:hover .tooltiptext2 {
+    visibility: visible;
 }
 
 .start-btn-con {
@@ -136,7 +184,7 @@ h1 {
     height: 50px;
     display: none;
     position: absolute;
-    top: 60px;
+    top: 18%;
     background: #f6bf00;
     justify-content: center;
     align-items: center;
@@ -151,8 +199,10 @@ h1 {
 }
 
 #loader {
-    width: 720px;
-    height: 480px;
+    /* width: 720px; */
+    width: 100%;
+    height: 100%;
+    /* height: 480px; */
     position: absolute;
     display: flex;
     align-items: center;
@@ -169,75 +219,6 @@ h1 {
 #mobileButtons {
     display: none;
 }
-
-#buttonJump {
-    background-image: url('img/2_character_pepe/3_jump/J-36.png');
-    height: 72px;
-    width: 72px;
-    background-position-y: top;
-    background-position-x: center;
-    border: 1px solid brown;
-    border-radius: 50% 50%;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-color: aliceblue;
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    text-align: center;
-    bottom: 42px;
-    right: 10px;
-}
-
-#buttonBottle {
-    background-image: url('img/6_salsa_bottle/salsa_bottle.png');
-    height: 72px;
-    width: 72px;
-    background-position-y: top;
-    background-position-x: center;
-    border: 1px solid brown;
-    border-radius: 50% 50%;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-color: aliceblue;
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    text-align: center;
-    bottom: 12px;
-    right: 103px;
-}
-
-#buttonLeft {
-    /* background-image: url('img/6_salsa_bottle/salsa_bottle.png'); */
-    height: 56px;
-    width: 56px;
-    border: 1px solid brown;
-    border-radius: 50% 50%;
-    background-color: aliceblue;
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    text-align: center;
-    bottom: 12px;
-    left: 10px;
-}
-
-#buttonRight {
-    /* background-image: url('img/6_salsa_bottle/salsa_bottle.png'); */
-    height: 56px;
-    width: 56px;
-    border: 1px solid brown;
-    border-radius: 50% 50%;
-    background-color: aliceblue;
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    text-align: center;
-    bottom: 12px;
-    left: 103px;
-}
-
 
 .instructions-con {
     display: flex;
@@ -260,6 +241,12 @@ h1 {
     height: 70px;
 }
 
+#endScreen img {
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
 #gameOverImg {
     display: none;
     position: absolute;
@@ -278,26 +265,137 @@ h1 {
     width: 100%;
 }
 
-#restartBtn {
-    font-family: 'Economica', sans-serif;
-    width: 180px;
-    height: 60px;
-    font-size: xx-large;
-    display: none;
-    position: absolute;
-    right: 274px;
-    background: rgb(246, 191, 0);
+.restart-button-con {
+    display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid rgb(149, 33, 2);
-    border-radius: 8px;
-    cursor: pointer;
-    bottom: 50px;
 }
 
-@media (max-width: 720px) and (orientation:landscape) {
+#restartBtn {
+    font-family: 'Economica', sans-serif;
+    font-size: xx-large;
+    width: 160px;
+    height: 50px;
+    display: none;
+    position: absolute;
+    top: 50%;
+    background: #f6bf00;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #952102;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+@media (min-width: 721px) {
+    #mobileButtons {
+        display: none !important;
+    }
+
+}
+
+@media (orientation: landscape) {}
+
+
+@media only screen and (max-width: 720px) {
+
+    h1 {
+        display: none;
+    }
+
     #canvas {
         width: 100%;
         /* height: 100%; */
     }
-  }
+
+    #myCanvas {
+        margin-top: 100px;
+    }
+
+    #startBtn {
+        width: 95px;
+        height: 45px;
+    }
+
+    #startBtn img {
+        width: 35px;
+        height: 35px;
+    }
+
+    #buttonJump {
+        background-image: url('img/2_character_pepe/3_jump/J-36.png');
+        height: 72px;
+        width: 72px;
+        background-position-y: top;
+        background-position-x: center;
+        border: 1px solid brown;
+        border-radius: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-color: aliceblue;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        text-align: center;
+        bottom: 42px;
+        right: 10px;
+    }
+
+    #buttonBottle {
+        background-image: url('img/6_salsa_bottle/salsa_bottle.png');
+        height: 72px;
+        width: 72px;
+        background-position-y: top;
+        background-position-x: center;
+        border: 1px solid brown;
+        border-radius: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-color: aliceblue;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        text-align: center;
+        bottom: 12px;
+        right: 103px;
+    }
+
+    #buttonLeft {
+        /* background-image: url('img/6_salsa_bottle/salsa_bottle.png'); */
+        height: 56px;
+        width: 56px;
+        border: 1px solid brown;
+        border-radius: 50% 50%;
+        background-color: aliceblue;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        text-align: center;
+        bottom: 12px;
+        left: 10px;
+    }
+
+    #buttonRight {
+        /* background-image: url('img/6_salsa_bottle/salsa_bottle.png'); */
+        height: 56px;
+        width: 56px;
+        border: 1px solid brown;
+        border-radius: 50% 50%;
+        background-color: aliceblue;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        text-align: center;
+        bottom: 12px;
+        left: 103px;
+    }
+
+
+}
+
+
+@media (max-width: 720px) {
+    #myCanvas {
+        width: 100%;
+    }
+}

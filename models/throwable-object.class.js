@@ -1,5 +1,5 @@
 class ThrowableObject extends MovableObject {
-
+    intervalIds = [];
 
     IMAGES_ROTATING = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
@@ -19,13 +19,13 @@ class ThrowableObject extends MovableObject {
     ];
 
     world;
-    offset = {
-        top: 5,
-        bottom: 5,
-        left: 5,
-        right: 5
-    }
 
+    offset = {
+        top: 20,
+        bottom: 20,
+        left: 35,
+        right: 35
+    }
 
     constructor(x, y) {
         super().loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');

@@ -6,7 +6,8 @@ class Character extends MovableObject {
     speed = 10;
     coinsAmount = 0;
     bottlesAmount = 0;
-    intervalsIds = [];
+
+    intervalIds = [];
 
 
     IMAGES_IDLE = [
@@ -61,18 +62,13 @@ class Character extends MovableObject {
         'img/2_character_pepe/5_dead/D-57.png'
     ];
 
-    walkingSound = new Audio("audio/walking.mp3");
-    jumpSound = new Audio("audio/jump.mp3");
-
-
-
     world;
 
     offset = {
-        top: 120,
+        top: 140,
         bottom: 14,
-        left: 40,
-        right: 40,
+        left: 50,
+        right: 50,
     };
 
     constructor() {
@@ -84,42 +80,45 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_DEAD);
         this.applyGravity();
         this.animate();
-        // this.interwals();
     }
 
     animate() {
 
         setInterval(() => {
-
-            this.walkingSound.pause();
-            if ((this.world.keyboard.RIGHT || this.world.keyboard.D) && this.x < this.world.level.level_end_x) {
-                this.moveRight();
-                this.otherDirection = false;
-                this.walkingSound.play();
-            }
-
-            if ((this.world.keyboard.LEFT || this.world.keyboard.A) && this.x > 0) {
-                this.moveLeft();
-                this.otherDirection = true;
-                this.walkingSound.play();
-            }
-
-            if ((this.world.keyboard.UP || this.world.keyboard.W) && !this.isAboveGround()) { // ein ! muss vor sein, weil das ist die negation, ohne ! geht spiel nicht
-                this.jump();
-                this.jumpSound.play();
-            }
-
+            walkingSound.pause();
+            this.setKeyboardMoveRight();
+            this.setKeyboardMoveLeft();
+            this.setKeyboardJump();
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
-
         setInterval(() => {
             this.loadAllImages();
         }, 150)
     }
 
     setKeyboardMoveRight() {
-        //
+        if ((this.world.keyboard.RIGHT || this.world.keyboard.D) && this.x < this.world.level.level_end_x) {
+            this.moveRight();
+            this.otherDirection = false;
+            walkingSound.play();
+        }
     }
+
+    setKeyboardMoveLeft() {
+        if ((this.world.keyboard.LEFT || this.world.keyboard.A) && this.x > 0) {
+            this.moveLeft();
+            this.otherDirection = true;
+            walkingSound.play();
+        }
+    }
+
+    setKeyboardJump() {
+        if ((this.world.keyboard.UP || this.world.keyboard.W) && !this.isAboveGround()) { 
+            this.jump();
+            jumpSound.play();
+        }
+    }
+
 
     loadAllImages() {
 
@@ -134,10 +133,9 @@ class Character extends MovableObject {
             this.y == 20;
         } else {
             this.playAnimation(this.IMAGES_IDLE);
-            // this.y == 20;
+            // auf gleiche Höhe wieder kommen nach Jump
         }
     }
-
 
 
     jumpOnChicken(enemy) {
@@ -149,13 +147,15 @@ class Character extends MovableObject {
 
     }
 
-    interwals() {
-        if (this.energy = 0) {
-            clearInterval(this.playAnimation(this.IMAGES_DEAD))
-        }
-    }
 
     jump() {
         this.speedY = 17;
+    }
+
+    
+    stopIntervalsCharacter() {
+        if(this.energy <= 0){
+            clearInterval(this.animate)
+        }
     }
 }
