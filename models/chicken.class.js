@@ -1,11 +1,10 @@
 class Chicken extends MovableObject {
-    intervalIds = [];
-    
     height = 80;
     width = 65;
     y = 345;
 
     dead = false;
+    intervalIds = [];
 
     CHICKEN_WALKING = [
         '../img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
@@ -34,11 +33,7 @@ class Chicken extends MovableObject {
             if (this.moveLeft) {
                 this.playAnimation(this.CHICKEN_WALKING);
             } 
-            // else {
-            //     this.loadImage(this.CHICKEN_DEAD);
-            // }
         }, 200);
-
     }
 
     chickenWalk() {

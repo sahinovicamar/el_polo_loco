@@ -96,6 +96,10 @@ class Character extends MovableObject {
         }, 150)
     }
 
+
+
+
+
     setKeyboardMoveRight() {
         if ((this.world.keyboard.RIGHT || this.world.keyboard.D) && this.x < this.world.level.level_end_x) {
             this.moveRight();
@@ -121,7 +125,6 @@ class Character extends MovableObject {
 
 
     loadAllImages() {
-
         if (this.isDead()) {
             this.playAnimation(this.IMAGES_DEAD);
         } else if (this.isHurt()) {
@@ -144,7 +147,6 @@ class Character extends MovableObject {
         } else {
             return false;
         }
-
     }
 
 

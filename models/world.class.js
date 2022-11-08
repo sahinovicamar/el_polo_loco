@@ -255,35 +255,45 @@ class World {
         });
     }
 
+
     checkGameEnd() {
         if (world.endBoss[0].energy <= 0) {
-            this.gameOver();
-            this.endBoss[0].stopIntervalsEndboss();
-            this.character.stopIntervalsCharacter();
-            // console.log("Endboss dead")
-            // this.win_sound.play()
+            setTimeout(() => {
+                this.gameOver();
+                this.endBoss[0].stopIntervalsEndboss();
+                this.character.stopIntervalsCharacter();
+            }, 500)
+            winSound.play();
         }
 
         if (world.character.energy <= 0) {
-            this.youLost();
-            this.character.stopIntervalsCharacter();
-            // console.log("you lost")
-            // this.lose_sound.play()
+            setTimeout(() => {
+                this.youLost();
+                this.character.stopIntervalsCharacter();
+                lostSound.play();
+            }, 500)
         }
     }
+
 
     gameOver() {
         clearAllIntervals();
         backgroundMusicAudio.pause();
         document.getElementById('gameOverImg').style.display = "block";
-        document.getElementById('restartBtn').style.display = "flex";
+        setTimeout(() => {
+            document.getElementById('restartBtn').style.display = "flex";
+        }, 800)
+
     }
+    
 
     youLost() {
         clearAllIntervals();
         backgroundMusicAudio.pause();
         document.getElementById('youLostImg').style.display = "block";
-        document.getElementById('restartBtn').style.display = "flex";
+        setTimeout(() => {
+            document.getElementById('restartBtn').style.display = "flex";
+        }, 800)
     }
 
 }

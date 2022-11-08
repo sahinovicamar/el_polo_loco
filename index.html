@@ -48,7 +48,7 @@
 
 <body onload="init()">
 
-    <h1>El Polo Loco</h1>
+    <h1 id="headline">El Polo Loco</h1>
 
     <div id="myCanvas">
 
@@ -135,9 +135,23 @@
             <button id="restartBtn" onclick="restartGame()">RESTART</button>
         </div>
 
+
     </div>
     <button onclick="fullscreen()">fullscreen</button>
 
+    <div class="notice-container" id="noticeCon">
+        <div>
+            <img class="pepe-img" src="img/2_character_pepe/3_jump/J-35.png" alt="">
+            <img class="chicken-img" src="img/3_enemies_chicken/chicken_normal/1_walk/3_w.png" alt="">
+        </div>
+        That's great that you play via a mobile device
+        <span>To start game please turn your device to horizontal position</span>
+        <img src="img/10_icons/screen-rotation.png" alt="">
+        <span>GOOD LUCK!</span>
+    </div>
+    <div>
+        <img onclick="refresh()" src="img/10_icons/return.png" alt="">
+    </div>
 </body>
 
 </html>

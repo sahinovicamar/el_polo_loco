@@ -74,7 +74,6 @@ class Endboss extends MovableObject {
     animate() {
         this.endBossRunLeft();
         setInterval(() => {
-
             if (this.isDead()) {
                 this.playAnimation(this.DEAD_ENDBOSS)
                 this.speed = 0;
@@ -82,9 +81,7 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.HURT_ENDBOSS)
             } else {
                 this.playAnimation(this.WALKING_ENDBOSS);
-                // this.playAnimation(this.ATTACK_ENDBOSS);
             }
-
         }, 200);
     }
 
@@ -99,7 +96,6 @@ class Endboss extends MovableObject {
         if(this.energy <= 0){
             clearInterval(this.animate)
         }
-        // this.loadImage('img/4_enemie_boss_chicken/5_dead/G26.png')
     }
 }
 

@@ -287,15 +287,34 @@ h1 {
     cursor: pointer;
 }
 
-@media (min-width: 721px) {
-    #mobileButtons {
-        display: none !important;
-    }
-
+.notice-container {
+    /* display: none; */
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
 }
 
-@media (orientation: landscape) {}
+.pepe-img {
+    width: 28%;
+    transform: rotate(21deg);
+}
 
+.chicken-img {
+    width: 15%;
+    transform: rotate(-17deg);
+}
+
+
+
+@media (min-width: 721px) {
+    /* #mobileButtons {
+        display: none !important;
+    } */
+
+}
 
 @media only screen and (max-width: 720px) {
 
@@ -322,10 +341,10 @@ h1 {
         height: 35px;
     }
 
-    #buttonJump {
+    /* #buttonJump {
         background-image: url('img/2_character_pepe/3_jump/J-36.png');
-        height: 72px;
-        width: 72px;
+        height: 55px;
+        width: 55px;
         background-position-y: top;
         background-position-x: center;
         border: 1px solid brown;
@@ -339,12 +358,13 @@ h1 {
         text-align: center;
         bottom: 42px;
         right: 10px;
+        font-size: 22px;
     }
 
     #buttonBottle {
         background-image: url('img/6_salsa_bottle/salsa_bottle.png');
-        height: 72px;
-        width: 72px;
+        height: 55px;
+        width: 55px;
         background-position-y: top;
         background-position-x: center;
         border: 1px solid brown;
@@ -358,12 +378,12 @@ h1 {
         text-align: center;
         bottom: 12px;
         right: 103px;
+        font-size: 22px;
     }
 
     #buttonLeft {
-        /* background-image: url('img/6_salsa_bottle/salsa_bottle.png'); */
-        height: 56px;
-        width: 56px;
+        height: 40px;
+        width: 40px;
         border: 1px solid brown;
         border-radius: 50% 50%;
         background-color: aliceblue;
@@ -376,9 +396,8 @@ h1 {
     }
 
     #buttonRight {
-        /* background-image: url('img/6_salsa_bottle/salsa_bottle.png'); */
-        height: 56px;
-        width: 56px;
+        height: 40px;
+        width: 40px;
         border: 1px solid brown;
         border-radius: 50% 50%;
         background-color: aliceblue;
@@ -387,15 +406,94 @@ h1 {
         position: absolute;
         text-align: center;
         bottom: 12px;
-        left: 103px;
-    }
-
-
+        left: 85px;
+    } */
 }
 
+
+@media only screen and (max-width: 1000px) {
+
+
+    #buttonJump {
+        background-image: url('img/2_character_pepe/3_jump/J-36.png');
+        height: 55px;
+        width: 55px;
+        background-position-y: top;
+        background-position-x: center;
+        border: 1px solid brown;
+        border-radius: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-color: aliceblue;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        text-align: center;
+        bottom: 42px;
+        right: 10px;
+        font-size: 22px;
+    }
+
+    #buttonBottle {
+        background-image: url('img/6_salsa_bottle/salsa_bottle.png');
+        height: 55px;
+        width: 55px;
+        background-position-y: top;
+        background-position-x: center;
+        border: 1px solid brown;
+        border-radius: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-color: aliceblue;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        text-align: center;
+        bottom: 12px;
+        right: 103px;
+        font-size: 22px;
+    }
+
+    #buttonLeft {
+        height: 40px;
+        width: 40px;
+        border: 1px solid brown;
+        border-radius: 50% 50%;
+        background-color: aliceblue;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        text-align: center;
+        bottom: 12px;
+        left: 10px;
+    }
+
+    #buttonRight {
+        height: 40px;
+        width: 40px;
+        border: 1px solid brown;
+        border-radius: 50% 50%;
+        background-color: aliceblue;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        text-align: center;
+        bottom: 12px;
+        left: 85px;
+    }
+}
 
 @media (max-width: 720px) {
     #myCanvas {
         width: 100%;
     }
 }
+
+
+@media (min-width: 100px) {
+    .notice-container {
+        display: none;
+    }
+}
+
+
