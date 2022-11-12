@@ -1,7 +1,6 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-// let gameOver;
 
 let backgroundMusicAudio = new Audio('audio/background-music.mp3');
 let collectCoinSound = new Audio("audio/collect-coin.mp3");
@@ -12,6 +11,19 @@ let walkingSound = new Audio("audio/walking.mp3");
 let jumpSound = new Audio("audio/jump.mp3");
 let winSound = new Audio("audio/win-sound.mp3");
 let lostSound = new Audio("audio/lost-sound.mp3");
+
+let allSounds = [
+  // backgroundMusicAudio;
+  // collectCoinSound,
+  // collectBottleSound,
+  // throwBottleSound,
+  // enemyDeadSound,
+  // walkingSound,
+  // jumpSound,
+  // winSound,
+  // lostSound
+];
+
 
 let intervalIds = [];
 
@@ -33,6 +45,7 @@ function startGame() {
   world = new World(canvas, keyboard);
   startGameElements();
   playBackgroundMusic();
+  // fullscreen()
 }
 
 function startGameElements() {
@@ -40,6 +53,8 @@ function startGameElements() {
   document.getElementById("startScreen").style.display = "none";
   document.getElementById("volumeUp").style.display = "block";
   document.getElementById("volumeOff").style.display = "none";
+  document.getElementById("musicOn").style.display = "block";
+  document.getElementById("musicOff").style.display = "none";
   document.getElementById("helpCon").style.display = "none";
   document.getElementById('gameOverImg').style.display = "none";
   document.getElementById('restartBtn').style.display = "none";
@@ -51,6 +66,46 @@ function playBackgroundMusic() {
   backgroundMusicAudio.volume = 0.1;
   backgroundMusicAudio.play();
   backgroundMusicAudio.loop = true;
+}
+
+function turnMusicOn() {
+  backgroundMusicAudio.muted = true;
+  document.getElementById("musicOn").style.display = "none";
+  document.getElementById("musicOff").style.display = "block";
+}
+
+function turnMusicOff() {
+  backgroundMusicAudio.muted = false;
+  document.getElementById("musicOn").style.display = "block";
+  document.getElementById("musicOff").style.display = "none";
+}
+
+function turnOn() {
+  // allSounds.muted = true;
+  collectCoinSound.muted = true;
+  collectBottleSound.muted = true;
+  throwBottleSound.muted = true;
+  enemyDeadSound.muted = true;
+  walkingSound.muted = true;
+  jumpSound.muted = true;
+  winSound.muted = true;
+  lostSound.muted = true;
+  document.getElementById("volumeUp").style.display = "none";
+  document.getElementById("volumeOff").style.display = "block";
+}
+
+function turnOff() {
+  // allSounds.muted = false;
+  collectCoinSound.muted = false;
+  collectBottleSound.muted = false;
+  throwBottleSound.muted = false;
+  enemyDeadSound.muted = false;
+  walkingSound.muted = false;
+  jumpSound.muted = false;
+  winSound.muted = false;
+  lostSound.muted = false;
+  document.getElementById("volumeUp").style.display = "block";
+  document.getElementById("volumeOff").style.display = "none";
 }
 
 function setStopableInterval(func, time) {
@@ -78,8 +133,8 @@ function enterFullscreen(element) {
   }
 }
 
-//   enterFullscreen(document.documentElement);               // ganze Seite
-//   enterFullscreen(document.getElementById("videoPlayer"));
+// enterFullscreen(document.documentElement);               // ganze Seite
+// enterFullscreen(document.getElementById("videoPlayer"));
 
 function exitFullscreen() {
   if (document.exitFullscreen) {
@@ -105,44 +160,40 @@ function showHelp() {
   }
 }
 
-function turnOn() {
-  backgroundMusicAudio.muted = true;
-  document.getElementById("volumeUp").style.display = "none";
-  document.getElementById("volumeOff").style.display = "block";
-}
-
-function turnOff() {
-  backgroundMusicAudio.muted = false;
-  document.getElementById("volumeUp").style.display = "block";
-  document.getElementById("volumeOff").style.display = "none";
-}
 
 function mediaMobile() {
   let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   setInterval(() => {
-    if (isMobile & screen.width <= 1000) {
+    if (isMobile) {
       document.getElementById('mobileButtons').style.display = "block";
       document.getElementById('headline').style.display = "none";
       document.getElementById("myCanvas").style.marginTop = "0";
       document.getElementById("myCanvas").style.height = "100%";
       document.getElementById("canvas").style.height = "100%";
-      document.getElementById("canvas").style.width = "720px";
-    //   if (window.matchMedia("(orientation: landscape)").matches) {
-    //     // you're in LANDSCAPE mode
-    //     // fullscreen();
-    //  }
+      document.getElementById("canvas").style.width = "100%";
+      //   if (window.matchMedia("(orientation: landscape)").matches) {
+      //     // you're in LANDSCAPE mode
+      //     // fullscreen();
+      //  }
     }
-    if (isMobile & screen.width <= 500) {
+    if (isMobile && screen.width <= 500) {
       document.getElementById("myCanvas").style.display = "none";
       document.getElementById("noticeCon").style.display = "flex";
       // console.log(isMobile)
     } else {
+      // fullscreen();
+      // document.getElementById('mobileButtons').style.display = "block";
       document.getElementById("myCanvas").style.display = "block";
       document.getElementById("noticeCon").style.display = "none";
       // console.log(isMobile)
     }
   }, 1000)
 
+  // let btnTrue = document.getElementById('startBtn');
+  // btnTrue.onclick = function () {
+  //   fullscreen();
+  //   startGame();
+  // }
 }
 
 

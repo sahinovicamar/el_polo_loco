@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="media-style.css">
 
+    <!-- My title -->
 
     <title>El polo loco</title>
 
@@ -48,8 +49,11 @@
 
 <body onload="init()">
 
+
     <h1 id="headline">El Polo Loco</h1>
 
+
+    <!-- Canvas foreground & background -->
     <div id="myCanvas">
 
         <div id="loader">
@@ -61,6 +65,7 @@
             <span>LOADING...</span>
         </div>
 
+        <!-- Game CANVAS -->
         <canvas id="canvas" width="720" height="480"></canvas>
 
         <div id="startScreen">
@@ -110,7 +115,18 @@
                 <img id="volumeOff" onclick="turnOff()" src="img/10_icons/volume_off.png" alt="">
                 <span class="tooltiptext2">Volume On/Off</span>
             </div>
+            <div class="tooltip3">
+                <img id="musicOn" onclick="turnMusicOn()" src="img/10_icons/music-on.png" alt="">
+                <img id="musicOff" onclick="turnMusicOff()" src="img/10_icons/music-off.png" alt="">
+                <span class="tooltiptext3">Music On/Off</span>
+            </div>
+            <div class="tooltip4">
+                <img id="refreshBtn" onclick="refresh()" src="img/10_icons/return.png" alt="">
+                <span class="tooltiptext4">Back</span>
+            </div>
         </div>
+
+        <!-- Mobile buttons -->
 
         <div id="mobileButtons">
             <div id="buttonJump">
@@ -130,14 +146,12 @@
             <img id="gameOverImg" src="img/9_intro_outro_screens/game_over/game over.png" alt="">
             <img id="youLostImg" src="img/9_intro_outro_screens/game_over/you lost.png" alt="">
         </div>
-
         <div class="restart-button-con">
             <button id="restartBtn" onclick="restartGame()">RESTART</button>
         </div>
-
-
     </div>
-    <button onclick="fullscreen()">fullscreen</button>
+
+    <!-- Mobile information about position -->
 
     <div class="notice-container" id="noticeCon">
         <div>
@@ -149,9 +163,11 @@
         <img src="img/10_icons/screen-rotation.png" alt="">
         <span>GOOD LUCK!</span>
     </div>
-    <div>
-        <img onclick="refresh()" src="img/10_icons/return.png" alt="">
-    </div>
+
+    <!-- Fullscreen modus -->
+
+    <!-- <button onclick="fullscreen()">fullscreen</button> -->
+
 </body>
 
 </html>
