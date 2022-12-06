@@ -26,7 +26,6 @@ class World {
     bottles = level1.bottles;
 
     bottleIsThrown = false;
-    // chickenIsDead = false;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -49,7 +48,7 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.mapObjects();
         this.addToMap(this.character);
-        this.ctx.translate(-this.camera_x, 0); 
+        this.ctx.translate(-this.camera_x, 0);
         this.statusBars();
         this.ctx.translate(this.camera_x, 0);
         this.ctx.translate(-this.camera_x, 0);
@@ -159,47 +158,36 @@ class World {
 
     checkCollisionsChicken() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.jumpOnChicken(enemy)) {
-                this.chickenDies(enemy);
-            } else if (this.character.isColliding(enemy) && !this.character.isAboveGround() && !enemy.dead) {
-                this.character.hit();
-                this.statusBar.setPercentage(this.character.energy);
+            if (this.canColide(enemy)) {
+                if (this.character.isAboveGround())
+                    this.chickenDies(enemy);
+                else {
+                    this.character.hit();
+                    this.statusBar.setPercentage(this.character.energy);
+                }
             }
         });
     }
 
 
-    chickenDies(enemy) {
-        if (this.character.jumpOnChicken(enemy)) {
-            if (enemy instanceof Chicken) {
-                enemy.chickenIsDead();
-                // enemy.stopIntervals();
-                enemy.dead = true;
-                enemyDeadSound.play();
-                // this.chickenRemove();
-
-                // debugger;
-
-                setTimeout(() => {
-                    const enemyToRemove = this.level.enemies.indexOf(enemy);
-                    this.level.enemies.splice(enemyToRemove, 1);
-                    console.log('dead enemy', enemyToRemove)
-                }, 500)
-            }
-        }
+    canColide(enemy) {
+        return !enemy.dead && this.character.isColliding(enemy)
     }
 
-    // chickenRemove(enemy) {
-        
-    //     // this.level.enemies.forEach((enemy) => {
-    //         if (enemy.dead) {
-    //             setTimeout(() => {
-    //                 const enemyToRemove = this.level.enemies.indexOf(enemy);
-    //                 this.level.enemies.splice(enemyToRemove, 1);
-    //             }, 500)
-    //         }
-    //     // })
-    // }
+
+    chickenDies(enemy) {
+        if (enemy instanceof Chicken) {
+            enemy.chickenIsDead();
+            enemy.dead = true;
+            enemyDeadSound.play();
+
+            setTimeout(() => {
+                const enemyToRemove = this.level.enemies.indexOf(enemy);
+                this.level.enemies.splice(enemyToRemove, 1);
+                // console.log('dead enemy', enemyToRemove)
+            }, 500)
+        }
+    }
 
 
     checkCollisionsEndBoss() {
@@ -287,7 +275,7 @@ class World {
         }, 800)
 
     }
-    
+
 
     youLost() {
         clearAllIntervals();

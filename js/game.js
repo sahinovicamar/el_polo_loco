@@ -2,6 +2,7 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
+
 let backgroundMusicAudio = new Audio('audio/background-music.mp3');
 let collectCoinSound = new Audio("audio/collect-coin.mp3");
 let collectBottleSound = new Audio("audio/collect-bottle.mp3");
@@ -13,9 +14,10 @@ let winSound = new Audio("audio/win-sound.mp3");
 let lostSound = new Audio("audio/lost-sound.mp3");
 
 let mobilePhone = false;
+let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 let allSounds = [
-  // backgroundMusicAudio;
+  // backgroundMusicAudio,
   // collectCoinSound,
   // collectBottleSound,
   // throwBottleSound,
@@ -42,17 +44,12 @@ function showPage() {
   document.getElementById("helpCon").style.display = "none";
 }
 
-function startGame(isMobile) {
+function startGame() {
   initLevel();
   world = new World(canvas, keyboard);
   startGameElements();
   playBackgroundMusic();
-  // fullscreen()
-  if(isMobile && mobilePhone == true) {
-    // document.getElementById('mobileButtons').style.display = "block";
-    fullscreen();
-    // startGame();
-  }
+  checkIfMobile();
 }
 
 function startGameElements() {
@@ -63,11 +60,19 @@ function startGameElements() {
   document.getElementById("musicOn").style.display = "block";
   document.getElementById("musicOff").style.display = "none";
   document.getElementById("helpCon").style.display = "none";
+  document.getElementById("refreshBtn").style.display = "block";
   document.getElementById('gameOverImg').style.display = "none";
   document.getElementById('restartBtn').style.display = "none";
   document.getElementById('youLostImg').style.display = "none";
-
 }
+
+function checkIfMobile() {
+  if (isMobile) {
+    document.getElementById('mobileButtons').style.display = "block";
+    fullscreen();
+  }
+}
+
 
 function playBackgroundMusic() {
   backgroundMusicAudio.volume = 0.1;
@@ -140,9 +145,6 @@ function enterFullscreen(element) {
   }
 }
 
-// enterFullscreen(document.documentElement);               // ganze Seite
-// enterFullscreen(document.getElementById("videoPlayer"));
-
 function exitFullscreen() {
   if (document.exitFullscreen) {
     document.exitFullscreen();
@@ -151,9 +153,8 @@ function exitFullscreen() {
   }
 }
 
-
 function restartGame() {
-  // endSoundOnRestart();
+  // endSoundOnRestart();     // Klären
   startGame();
 }
 
@@ -167,49 +168,25 @@ function showHelp() {
   }
 }
 
-
 function mediaMobile() {
-  let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   setInterval(() => {
     if (isMobile) {
-      // document.getElementById('mobileButtons').style.display = "block";
       document.getElementById('headline').style.display = "none";
       document.getElementById("myCanvas").style.marginTop = "0";
       document.getElementById("myCanvas").style.height = "100%";
       document.getElementById("canvas").style.height = "100%";
       document.getElementById("canvas").style.width = "100%";
-      //   if (window.matchMedia("(orientation: landscape)").matches) {
-      //     // you're in LANDSCAPE mode
-      //     // fullscreen();
-      //  }
     }
     if (isMobile && screen.width <= 500) {
       document.getElementById("myCanvas").style.display = "none";
       document.getElementById("noticeCon").style.display = "flex";
       // console.log(isMobile)
     } else {
-      // fullscreen();
-      // document.getElementById('mobileButtons').style.display = "block";
       document.getElementById("myCanvas").style.display = "block";
       document.getElementById("noticeCon").style.display = "none";
       // console.log(isMobile)
     }
   }, 1000)
-
-  // let btnTrue = document.getElementById('startBtn');
-  // let target = evt.target;
-
-
-  //   let btnTrue = document.getElementById('startBtn');
-  // btnTrue.onclick = function () {
-  //   if(isMobile && mobilePhone == true) {
-  //     // document.getElementById('mobileButtons').style.display = "block";
-  //     fullscreen();
-  //     startGame();
-  //   }
-  //   // fullscreen();
-  //   // startGame();
-  // }
 }
 
 
@@ -218,8 +195,26 @@ function refresh() {
 }
 
 
-  // let btnTrue = document.getElementById('startBtn');
-  // btnTrue.onclick = function () {
-  //   fullscreen();
-  //   startGame();
-  // }
+
+//   function myTimer() {
+
+//     let timer = document.getElementById('timer');
+//     let min = 0;
+//     let sec = 0;
+
+//     // if(!timerStarted) {
+//         setInterval(() => {
+//             if(sec > 60) {
+//                 min++;
+//                 sec = 0;
+//             }
+//             if(min > 0) {
+//                 timer.innerHTML = `<p>${min}:${sec}</p>`;
+//             } else {
+//                 timer.innerHTML = `<p>${sec}</p>`;
+//             }
+//                 sec++
+//         }, 1000);
+//     // }
+
+// }

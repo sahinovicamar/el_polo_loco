@@ -7,9 +7,9 @@ class Chicken extends MovableObject {
     intervalIds = [];
 
     CHICKEN_WALKING = [
-        '../img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
-        '../img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
-        '../img/3_enemies_chicken/chicken_normal/1_walk/3_w.png'
+        'img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
+        'img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
+        'img/3_enemies_chicken/chicken_normal/1_walk/3_w.png'
     ];
 
     CHICKEN_DEAD = [
@@ -19,7 +19,7 @@ class Chicken extends MovableObject {
     world;
 
     constructor() {
-        super().loadImage('../img/3_enemies_chicken/chicken_normal/1_walk/1_w.png')
+        super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png')
         this.loadImages(this.CHICKEN_WALKING);
         this.loadImages(this.CHICKEN_DEAD);
         this.x = 500 + Math.random() * 1000; 
