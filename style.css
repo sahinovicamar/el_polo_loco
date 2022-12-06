@@ -26,7 +26,6 @@ h1 {
     position: relative;
     display: block;
     width: 720px;
-    /* height: 480px; */
 }
 
 #startScreen img {
@@ -219,7 +218,7 @@ h1 {
 #refreshBtn {
     width: 35px;
     height: 35px;
-    /* display: none; */
+    display: none;
     position: absolute;
     cursor: pointer;
 }
@@ -257,7 +256,7 @@ h1 {
 
 #startBtn {
     font-size: 2.5vw;
-    width: 110px;
+    width: 120px;
     height: 50px;
     display: none;
     position: absolute;
@@ -270,16 +269,19 @@ h1 {
     cursor: pointer;
 }
 
+#startBtn img {
+    width: 50%;
+    height: 95%;
+}
+
 #startBtn:hover {
     display: flex;
     background: #f7d300;
 }
 
 #loader {
-    /* width: 720px; */
     width: 100%;
     height: 100%;
-    /* height: 480px; */
     position: absolute;
     display: flex;
     align-items: center;
@@ -370,7 +372,6 @@ h1 {
 }
 
 .notice-container {
-    /* display: none; */
     height: 50%;
     display: flex;
     justify-content: center;

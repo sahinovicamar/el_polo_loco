@@ -1,7 +1,4 @@
 class BackgroundObject extends MovableObject {
-
-   //hier sind die Standard Werte geschrieben
-
    width = 720;
    height = 480;
    
@@ -9,8 +6,6 @@ class BackgroundObject extends MovableObject {
         super().loadImage(imagePath);
         this.x = x;
         this.y = 480 - this.height;
-
-        //werte von jeweilige MovableObject
     }
 
 }

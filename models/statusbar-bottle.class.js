@@ -10,7 +10,6 @@ class StatusBarBottle extends DrawableObject {
     ];
 
     maxBottleAmountBarValue = this.IMAGES_BOTTLEBAR.length;
-    // percentage = 100;
 
     constructor() {
         super();

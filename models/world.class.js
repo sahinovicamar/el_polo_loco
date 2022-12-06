@@ -36,6 +36,7 @@ class World {
         this.run();
     }
 
+
     setWorld() {
         this.character.world = this;
         this.endBoss[0].world = this;
@@ -70,11 +71,13 @@ class World {
         this.addObjectsToMap(this.ThrowableObjects);
     }
 
+
     statusBars() {
         this.addToMap(this.statusBar);
         this.addToMap(this.statusBarCoins);
         this.addToMap(this.statusBarBottle);
     }
+
 
     addObjectsToMap(objects) {
         objects.forEach(o => {
@@ -82,16 +85,17 @@ class World {
         });
     }
 
+
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo);
         }
         mo.draw(this.ctx)
-        mo.drawHitbox(this.ctx)
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
     }
+
 
     checkIfOffsetExists(mo) {
         return !(
@@ -102,6 +106,7 @@ class World {
         );
     }
 
+
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -109,10 +114,12 @@ class World {
         mo.x = mo.x * -1;
     }
 
+
     flipImageBack(mo) {
         mo.x = mo.x * -1;
         this.ctx.restore();
     }
+
 
     run() {
         setInterval(() => {
@@ -184,7 +191,6 @@ class World {
             setTimeout(() => {
                 const enemyToRemove = this.level.enemies.indexOf(enemy);
                 this.level.enemies.splice(enemyToRemove, 1);
-                // console.log('dead enemy', enemyToRemove)
             }, 500)
         }
     }
@@ -239,7 +245,6 @@ class World {
                     this.endBoss[0].hit();
                     bottle.speed = 0;
                     bottle.breakBottle();
-                    console.log(endboss.energy);
                 }
             });
         });
@@ -285,5 +290,6 @@ class World {
             document.getElementById('restartBtn').style.display = "flex";
         }, 800)
     }
+    
 
 }

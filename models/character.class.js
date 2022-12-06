@@ -81,6 +81,7 @@ class Character extends MovableObject {
         this.applyGravity();
         this.animate();
     }
+    
 
     animate() {
 
@@ -135,7 +136,6 @@ class Character extends MovableObject {
             this.y == 20;
         } else {
             this.playAnimation(this.IMAGES_IDLE);
-            // auf gleiche Höhe wieder kommen nach Jump
         }
     }
 

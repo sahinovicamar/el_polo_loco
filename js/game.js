@@ -31,11 +31,13 @@ let allSounds = [
 
 let intervalIds = [];
 
+
 function init() {
   canvas = document.getElementById('canvas');
   loading = setTimeout(showPage, 1000);
   mediaMobile();
 }
+
 
 function showPage() {
   document.getElementById("loader").style.display = "none";
@@ -44,6 +46,7 @@ function showPage() {
   document.getElementById("helpCon").style.display = "none";
 }
 
+
 function startGame() {
   initLevel();
   world = new World(canvas, keyboard);
@@ -51,6 +54,7 @@ function startGame() {
   playBackgroundMusic();
   checkIfMobile();
 }
+
 
 function startGameElements() {
   document.getElementById("startBtn").style.display = "none";
@@ -66,6 +70,7 @@ function startGameElements() {
   document.getElementById('youLostImg').style.display = "none";
 }
 
+
 function checkIfMobile() {
   if (isMobile) {
     document.getElementById('mobileButtons').style.display = "block";
@@ -80,17 +85,20 @@ function playBackgroundMusic() {
   backgroundMusicAudio.loop = true;
 }
 
+
 function turnMusicOn() {
   backgroundMusicAudio.muted = true;
   document.getElementById("musicOn").style.display = "none";
   document.getElementById("musicOff").style.display = "block";
 }
 
+
 function turnMusicOff() {
   backgroundMusicAudio.muted = false;
   document.getElementById("musicOn").style.display = "block";
   document.getElementById("musicOff").style.display = "none";
 }
+
 
 function turnOn() {
   // allSounds.muted = true;
@@ -106,6 +114,7 @@ function turnOn() {
   document.getElementById("volumeOff").style.display = "block";
 }
 
+
 function turnOff() {
   // allSounds.muted = false;
   collectCoinSound.muted = false;
@@ -120,6 +129,7 @@ function turnOff() {
   document.getElementById("volumeOff").style.display = "none";
 }
 
+
 function setStopableInterval(func, time) {
   let idIntervall = setInterval(func, time);
   intervalIds.push(idIntervall);
@@ -130,10 +140,12 @@ function clearAllIntervals() {
   for (let i = 1; i < 9999; i++)  window.clearInterval(i);
 }
 
+
 function fullscreen() {
   let fullscreen = document.getElementById('myCanvas');
   enterFullscreen(fullscreen);
 }
+
 
 function enterFullscreen(element) {
   if (element.requestFullscreen) {
@@ -145,6 +157,7 @@ function enterFullscreen(element) {
   }
 }
 
+
 function exitFullscreen() {
   if (document.exitFullscreen) {
     document.exitFullscreen();
@@ -153,8 +166,8 @@ function exitFullscreen() {
   }
 }
 
+
 function restartGame() {
-  // endSoundOnRestart();     // Klären
   startGame();
 }
 
@@ -168,6 +181,7 @@ function showHelp() {
   }
 }
 
+
 function mediaMobile() {
   setInterval(() => {
     if (isMobile) {
@@ -180,11 +194,9 @@ function mediaMobile() {
     if (isMobile && screen.width <= 500) {
       document.getElementById("myCanvas").style.display = "none";
       document.getElementById("noticeCon").style.display = "flex";
-      // console.log(isMobile)
     } else {
       document.getElementById("myCanvas").style.display = "block";
       document.getElementById("noticeCon").style.display = "none";
-      // console.log(isMobile)
     }
   }, 1000)
 }
@@ -193,28 +205,3 @@ function mediaMobile() {
 function refresh() {
   location.reload();
 }
-
-
-
-//   function myTimer() {
-
-//     let timer = document.getElementById('timer');
-//     let min = 0;
-//     let sec = 0;
-
-//     // if(!timerStarted) {
-//         setInterval(() => {
-//             if(sec > 60) {
-//                 min++;
-//                 sec = 0;
-//             }
-//             if(min > 0) {
-//                 timer.innerHTML = `<p>${min}:${sec}</p>`;
-//             } else {
-//                 timer.innerHTML = `<p>${sec}</p>`;
-//             }
-//                 sec++
-//         }, 1000);
-//     // }
-
-// }

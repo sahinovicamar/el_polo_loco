@@ -15,7 +15,6 @@ class DrawableObject {
         right: 0
     }
 
-
     loadImage(path) {
         this.img = new Image();
         this.img.src = path;
@@ -27,33 +26,12 @@ class DrawableObject {
             img.src = path;
             img.style = 'transform: scaleX(-1)';
             this.imageCache[path] = img;
-
         });
-
     }
 
     draw(ctx) {
-        // ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-        try {
-            ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-        } catch (error) {
-            // console.warn('Image could not loaded', error);
-            // console.log(this.img.src);
-        }
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+
     }
-
-
-    drawHitbox(ctx) {
-        if (this instanceof Character || this instanceof Chicken || this instanceof Coins || this instanceof Bottles || this instanceof Endboss) {
-            ctx.beginPath();
-            ctx.lineWidth = '1';
-            ctx.strokeStyle = 'red';
-            ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.left - this.offset.right, this.height - this.offset.top - this.offset.bottom);
-            ctx.stroke();
-        }
-
-    };
-
-
 
 }
