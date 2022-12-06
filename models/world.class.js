@@ -170,7 +170,7 @@ class World {
 
 
     chickenDies(enemy) {
-        if (this.character.jumpOnChicken) {
+        if (this.character.jumpOnChicken(enemy)) {
             if (enemy instanceof Chicken) {
                 enemy.chickenIsDead();
                 // enemy.stopIntervals();
@@ -178,10 +178,12 @@ class World {
                 enemyDeadSound.play();
                 // this.chickenRemove();
 
+                // debugger;
+
                 setTimeout(() => {
                     const enemyToRemove = this.level.enemies.indexOf(enemy);
                     this.level.enemies.splice(enemyToRemove, 1);
-                    // console.log('dead enemy', enemyToRemove)
+                    console.log('dead enemy', enemyToRemove)
                 }, 500)
             }
         }

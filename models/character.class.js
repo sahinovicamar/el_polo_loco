@@ -97,9 +97,6 @@ class Character extends MovableObject {
     }
 
 
-
-
-
     setKeyboardMoveRight() {
         if ((this.world.keyboard.RIGHT || this.world.keyboard.D) && this.x < this.world.level.level_end_x) {
             this.moveRight();
@@ -108,6 +105,7 @@ class Character extends MovableObject {
         }
     }
 
+
     setKeyboardMoveLeft() {
         if ((this.world.keyboard.LEFT || this.world.keyboard.A) && this.x > 0) {
             this.moveLeft();
@@ -115,6 +113,7 @@ class Character extends MovableObject {
             walkingSound.play();
         }
     }
+
 
     setKeyboardJump() {
         if ((this.world.keyboard.UP || this.world.keyboard.W) && !this.isAboveGround()) { 

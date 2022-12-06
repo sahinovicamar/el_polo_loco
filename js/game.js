@@ -12,6 +12,8 @@ let jumpSound = new Audio("audio/jump.mp3");
 let winSound = new Audio("audio/win-sound.mp3");
 let lostSound = new Audio("audio/lost-sound.mp3");
 
+let mobilePhone = false;
+
 let allSounds = [
   // backgroundMusicAudio;
   // collectCoinSound,
@@ -40,12 +42,17 @@ function showPage() {
   document.getElementById("helpCon").style.display = "none";
 }
 
-function startGame() {
+function startGame(isMobile) {
   initLevel();
   world = new World(canvas, keyboard);
   startGameElements();
   playBackgroundMusic();
   // fullscreen()
+  if(isMobile && mobilePhone == true) {
+    // document.getElementById('mobileButtons').style.display = "block";
+    fullscreen();
+    // startGame();
+  }
 }
 
 function startGameElements() {
@@ -165,7 +172,7 @@ function mediaMobile() {
   let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   setInterval(() => {
     if (isMobile) {
-      document.getElementById('mobileButtons').style.display = "block";
+      // document.getElementById('mobileButtons').style.display = "block";
       document.getElementById('headline').style.display = "none";
       document.getElementById("myCanvas").style.marginTop = "0";
       document.getElementById("myCanvas").style.height = "100%";
@@ -190,16 +197,29 @@ function mediaMobile() {
   }, 1000)
 
   // let btnTrue = document.getElementById('startBtn');
+  // let target = evt.target;
+
+
+  //   let btnTrue = document.getElementById('startBtn');
   // btnTrue.onclick = function () {
-  //   fullscreen();
-  //   startGame();
+  //   if(isMobile && mobilePhone == true) {
+  //     // document.getElementById('mobileButtons').style.display = "block";
+  //     fullscreen();
+  //     startGame();
+  //   }
+  //   // fullscreen();
+  //   // startGame();
   // }
 }
-
-
 
 
 function refresh() {
   location.reload();
 }
 
+
+  // let btnTrue = document.getElementById('startBtn');
+  // btnTrue.onclick = function () {
+  //   fullscreen();
+  //   startGame();
+  // }
